@@ -22,4 +22,15 @@ Feature: Automation practice
     Scenario: Get suggestion input list
         When we type Wa on the suggession input
         Then we validate Washington is in the list
-        # And select the country <country>
+    
+
+    @dropdown
+    Scenario Outline: Get dropdown menu options
+        When we click on the dropdown example
+        Then we select <menu_option> option
+        And we validate that <menu_option> is the value shown in the dropdown
+    
+        Examples:
+            | menu_option |
+            | Option2     |
+            | Option3     |

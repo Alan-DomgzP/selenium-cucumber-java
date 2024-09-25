@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class AutomationPage extends BasePage {
 
     private String suggestionInput = "//input[@id='autocomplete']";
-    // CLASSNAME
+    // CLASSNAME SUGGESTION INPUT
     // private String sugesstionResults = "ui-menu-item-wrapper";
-    // RELATIVE XPATH
+    // RELATIVE XPATH SUGGESTION INPUT
     private String sugesstionResults = "//div[starts-with(@id, 'ui-id-')]";
+    private String dropdownElement = "//select[@id='dropdown-class-example']";
 
     private String xpathLocator = "xpath";
 
@@ -48,10 +48,20 @@ public class AutomationPage extends BasePage {
         selectItemInList(sugesstionResults, country);
     }
 
-    public void validateInputValue(String country) {
-        // waitGivenSeconds(2);
-        // System.out.println("Valor del input: " + getElementTxt(xpathLocator, suggestionInput));
-        Assert.assertEquals(getElementTxt(xpathLocator, suggestionInput), country);
+    public String validateInputValue() {
+        return getElementTxt(xpathLocator, suggestionInput);
+    }
+
+    public void clickDropdown() {
+        clickElement(xpathLocator, dropdownElement);
+    }
+
+    public void selectDropdownValue(String option) {
+        selectFromDropdownByText( xpathLocator, dropdownElement, option);
+    }
+
+    public String validateDropdownText() {
+        return getElementTxt(xpathLocator, dropdownElement);
     }
     
 }

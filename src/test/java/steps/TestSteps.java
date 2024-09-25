@@ -45,7 +45,23 @@ public class TestSteps {
     
     @Then("^we validate that (.*) is shown in the input$")
     public void validateInputValue( String country) {
-        test.validateInputValue(country);
+        Assert.assertEquals( test.validateInputValue(), country);
+    }
+
+
+    @When("we click on the dropdown example")
+    public void clickDropdown() {
+        test.clickDropdown();
+    }
+
+    @Then("^we select (.*) option$")
+    public void selectDropdownValue(String menu_option) {
+        test.selectDropdownValue(menu_option);
+    }
+
+    @And("^we validate that (.*) is the value shown in the dropdown$")
+    public void validateDropdwonValue(String value) {
+        Assert.assertEquals( test.validateDropdownText(), value.toLowerCase() );
     }
     
 }
