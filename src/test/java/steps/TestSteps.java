@@ -42,12 +42,10 @@ public class TestSteps {
         test.selectCountryInList(country);
     }
     
-    
     @Then("^we validate that (.*) is shown in the input$")
     public void validateInputValue( String country) {
         Assert.assertEquals( test.validateInputValue(), country);
     }
-
 
     @When("we click on the dropdown example")
     public void clickDropdown() {

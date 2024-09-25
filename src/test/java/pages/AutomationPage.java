@@ -13,6 +13,7 @@ public class AutomationPage extends BasePage {
     // RELATIVE XPATH SUGGESTION INPUT
     private String sugesstionResults = "//div[starts-with(@id, 'ui-id-')]";
     private String dropdownElement = "//select[@id='dropdown-class-example']";
+    private String dropdownOption = "//option[@value='%s']";
 
     private String xpathLocator = "xpath";
 
@@ -57,7 +58,9 @@ public class AutomationPage extends BasePage {
     }
 
     public void selectDropdownValue(String option) {
-        selectFromDropdownByText( xpathLocator, dropdownElement, option);
+        // selectFromDropdownByText( xpathLocator, dropdownElement, option);
+        String value = String.format(dropdownOption, option.toLowerCase());
+        clickElement(xpathLocator, value);
     }
 
     public String validateDropdownText() {
