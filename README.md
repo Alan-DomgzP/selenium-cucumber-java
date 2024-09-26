@@ -1,10 +1,25 @@
 # Selenium-Challenge
 
-Para poder hacer uso del proyecto, este deberá ser descargado. 
+This project is based on the framework provided by  
+[_Patricio Miner_](["https://www.freerangetesters.com/"])
 
-  1. Descargar las dependencias del proyecto (gradle build en línea de comando o unrefresh gradle en eclipse)
-  2. Ejecutar los escenarios por medio del archivo runner.java en la ubicación app/src/test/java/runner
-  3. Se genera un reporte html con los steps ejecutados en el folder test-output/HtmlReport/ExtentHtml.html
+Java 17.0.10
+Selenium 4.25.0
 
-> $\textcolor{orange}{\text{Note:}}$
-  The test cases for the switch tab/window (4, 5) has changed so it's impossible to complete them.
+## How to use
+
+1. Execute `gradle build` on a terminal to download the project dependencies.
+    > This will also execute the current test case tag.
+
+2. Execute test cases
+    * Via `gradle build` command.
+    * Via runner file located at `src/test/java/runner`.
+      <br> You need to update the tag in the `CucumberOptions` based on the tag of the test case to be executed.
+
+<br>
+<br>
+
+<div style="color:#856404; background-color: #fff3cd; padding: 10px; border-radius: 5px;">
+    The test cases for the switch tab/window (4, 5) has changed so it's impossible to complete them.
+</div>
+

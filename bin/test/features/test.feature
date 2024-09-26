@@ -41,5 +41,5 @@ Feature: Automation practice
         Then we click the alert button
         And validate the alert text and close alert
         When we fill the alert input with "Stori Card"
-        # Then we click the confirm button
-        # And we validate the alert text
+        Then we click the confirm button
+        And validate the confirm text and close alert
