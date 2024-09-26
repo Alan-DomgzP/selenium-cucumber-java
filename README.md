@@ -21,8 +21,9 @@ The test cases used for this project come from a technical challenge by Stori, a
     * Via `gradle build` command.
     * Via runner file located at `src/test/java/runner`
       <br> You need to update the tag in the `CucumberOptions` based on the tag of the test case to be executed.
-3. Reports will be created locally at `folderLocation` and at [cucumber reports](https://reports.cucumber.io/report-collections/98c337f1-8e6f-4dfc-87e7-fa4304c67852).
+3. Reports will be created locally at `folderLocation` and at [cucumber reports](https://reports.cucumber.io/).
     - For [allure reports](https://allurereport.org/docs/install/), you need to have it installed on your machine and be at the reports folder location and execute on a terminal `allure open`
+    - For cucumber reports, open `https://reports.cucumber.io/report-collections/98c337f1-8e6f-4dfc-87e7-fa4304c67852`
 
 <br>
 <br>
