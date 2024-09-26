@@ -1,12 +1,13 @@
 package steps;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
@@ -19,10 +20,20 @@ public class Hooks extends BasePage {
         super(driver);
     }
 
+    @Before
+    public void setup() throws IOException, InterruptedException {
+        Utils.validateAndCreateDirectories();
+        // Thread.sleep(600);
+        String reportLocation = Utils.getLastReportFolderName("reports");
+        System.out.println("PATH REPORTES: " + reportLocation);
+        System.setProperty("allure.results.directory", reportLocation);
+    }
+
     @After
     public void tearDown(Scenario scenario) throws IOException {
         if( scenario.isFailed() ) {
-            scenario.log("Scenario failing, please refer to the image attached to respective report");
+            scenario.log("Scenario failed!");
+            scenario.log("For more information, please refer to the report");
             File screenshotFile = takeScreenShot( scenario.getName() );
             Allure.addAttachment("Screenshot ", FileUtils.openInputStream( screenshotFile ) );
         }
@@ -35,7 +46,7 @@ public class Hooks extends BasePage {
         String screenShotPath = "";
 
         try {
-            screenShotPath = srcPath + File.separator + "reports/screenshots" + File.separator + screenShotName.replace(" ", "_") + ".png";
+            screenShotPath = srcPath + File.separator + Utils.getLastReportFolderName("screenshots") + File.separator + screenShotName.replace(" ", "_") + ".png";
             System.out.println( "SS path: " + screenShotPath );
             FileUtils.copyFile( file, new File( screenShotPath ) );
             
@@ -45,4 +56,5 @@ public class Hooks extends BasePage {
 
         return file;
     }
+
 }

@@ -4,4 +4,4 @@
 build
 bin
 
-reports
+**/evidences/**
