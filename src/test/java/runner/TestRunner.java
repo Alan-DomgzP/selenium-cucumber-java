@@ -10,12 +10,12 @@ import pages.BasePage;
 @CucumberOptions(
     features = "src/test/resources", 
     glue = "steps", 
-    plugin = { "pretty", "html:target/cucumber-reports" }, tags="@dropdown"
+    plugin = { "pretty", "html:target/cucumber-reports" }, tags="@alert"
 )
  
 public class TestRunner {
     @AfterClass
-    public static void cleanDriver(){
+    public static void cleanDriver() {
         BasePage.closeBrowser();
     }
 }

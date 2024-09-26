@@ -61,5 +61,28 @@ public class TestSteps {
     public void validateDropdwonValue(String value) {
         Assert.assertEquals( test.validateDropdownText(), value.toLowerCase() );
     }
+
+    @When("^we fill the alert input with (.*)$")
+    public void fillAlertInput(String text) {
+        test.fillAlert(text.replace("\"", ""));
+    }
+
+    @Then("^we click the (.*) button$")
+    public void clickAlert(String type) {
+        test.clickAlertButton(type);
+    }
     
+    @And("^validate the (.*) text and close alert$")
+    public void validateAlert(String type) throws InterruptedException {
+        String textToValidate = "";
+        if( type.equals("alert") ) {
+            textToValidate = "Hello Stori Card, share this practice page and share your knowledge";
+        } else {
+            textToValidate = "Hello Stori Card, Are you sure you want to confirm?";
+        }
+
+        Assert.assertEquals(test.getAlertText(), textToValidate);
+        test.dismissAlert();
+    }
+
 }

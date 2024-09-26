@@ -34,3 +34,12 @@ Feature: Automation practice
             | menu_option |
             | Option2     |
             | Option3     |
+
+    @alert
+    Scenario: Switch To Alert Example
+        When we fill the alert input with "Stori Card"
+        Then we click the alert button
+        And validate the alert text and close alert
+        When we fill the alert input with "Stori Card"
+        Then we click the confirm button
+        And validate the confirm text and close alert

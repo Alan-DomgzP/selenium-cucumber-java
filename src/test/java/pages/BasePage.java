@@ -145,4 +145,22 @@ public class BasePage {
             }
         }
     }
+
+    public String alertActions(String action) {
+        switch( action ) {
+            case "accept":
+                driver.switchTo().alert().accept();
+                return null;
+            case "dismiss":
+                driver.switchTo().alert().dismiss();
+                return null;
+            case "getText":
+                return driver.switchTo().alert().getText();
+            default:
+                throw new IllegalArgumentException( "Unknown action: " + action );
+            // case "type":
+            //     driver.switchTo().alert().sendKeys(action);
+        }
+    }
+
 }

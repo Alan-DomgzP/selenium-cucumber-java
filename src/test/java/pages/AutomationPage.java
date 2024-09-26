@@ -15,6 +15,14 @@ public class AutomationPage extends BasePage {
     private String dropdownElement = "//select[@id='dropdown-class-example']";
     private String dropdownOption = "//option[@value='%s']";
 
+    private String alertInput = "//input[@id='name']";
+    private String alertButton = "//input[@id='alertbtn']";
+    private String confirmButton = "//input[@id='confirmbtn']";
+    // CSS SELECTOR
+    // private String alertButton = "#alertbtn";
+    // private String confirmButton = "#confirmbtn";
+    // private String cssSelector = "cssSelector";
+
     private String xpathLocator = "xpath";
 
     // private String searchInput = "//div[@id='the-basics']//input[@placeholder='States of USA']";
@@ -67,4 +75,22 @@ public class AutomationPage extends BasePage {
         return getElementTxt(xpathLocator, dropdownElement);
     }
     
+    public void fillAlert(String text) {
+        write(xpathLocator, alertInput, text);
+    }
+
+    public void clickAlertButton(String type) {
+        String buttonToClick = ( type.equals("alert") ) ? alertButton : confirmButton;
+        clickElement(xpathLocator, buttonToClick);
+        // clickElement(cssSelector, buttonToClick);
+    }
+
+    public String getAlertText() {
+        return alertActions("getText");
+    }
+
+    public void dismissAlert() throws InterruptedException {
+        Thread.sleep(600);
+        alertActions("dismiss");
+    }
 }
