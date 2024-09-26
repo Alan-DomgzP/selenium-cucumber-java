@@ -1,10 +1,14 @@
 # Selenium-Challenge
 
-This project is based on the framework provided by  
-[_Patricio Miner_](["https://www.freerangetesters.com/"])
+This project is based on the framework provided by [_Patricio Miner_](https://www.freerangetesters.com/) from his selenium-java course.
 
-Java 17.0.10
-Selenium 4.25.0
+
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Cucumber](https://img.shields.io/badge/Cucumber-43B02A?style=for-the-badge&logo=cucumber&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
+
 
 ## How to use
 
