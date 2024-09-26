@@ -18,6 +18,7 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.0'
     implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.29.0'
     testImplementation 'org.testng:testng:7.10.2'
     implementation 'io.cucumber:cucumber-java:7.18.1'
     testImplementation 'io.cucumber:cucumber-junit:7.18.1'

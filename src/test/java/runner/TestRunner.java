@@ -9,8 +9,9 @@ import pages.BasePage;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/resources", 
-    glue = "steps", 
-    plugin = { "pretty", "html:target/cucumber-reports" }, tags="@alert"
+    glue = "steps",
+    plugin = { "pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },
+    tags="@alert"
 )
  
 public class TestRunner {
