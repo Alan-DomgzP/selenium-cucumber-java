@@ -11,7 +11,7 @@ import pages.BasePage;
     features = "src/test/resources", 
     glue = "steps",
     plugin = { "pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },
-    tags="@alert"
+    tags="@dropdown"
 )
  
 public class TestRunner {

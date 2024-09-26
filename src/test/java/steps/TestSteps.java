@@ -59,7 +59,7 @@ public class TestSteps {
 
     @And("^we validate that (.*) is the value shown in the dropdown$")
     public void validateDropdwonValue(String value) {
-        Assert.assertEquals( test.validateDropdownText(), value.toLowerCase() );
+        Assert.assertEquals( test.validateDropdownText(), value );
     }
 
     @When("^we fill the alert input with (.*)$")

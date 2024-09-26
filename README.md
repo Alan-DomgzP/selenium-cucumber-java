@@ -1,6 +1,6 @@
 # Selenium-Challenge
 
-This project is based on the framework provided by [_Patricio Miner_](https://www.freerangetesters.com/) from his selenium-java course.
+This project is based on the framework provided by [_Patricio Miner_](https://www.freerangetesters.com/) from his [selenium-java](https://www.udemy.com/course/selenium-con-java-y-cucumber-el-curso-definitivo/?couponCode=OF83024E) course.
 
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
