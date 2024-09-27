@@ -26,29 +26,31 @@ public class Hooks extends BasePage {
         // Thread.sleep(600);
         String reportLocation = Utils.getLastReportFolderName("reports");
         System.out.println("PATH REPORTES: " + reportLocation);
-        System.setProperty("allure.results.directory", reportLocation);
+        Utils.updateAllureResultsDirectory(reportLocation);
+        // System.setProperty("allure.results.directory", reportLocation);
+        // System.out.println("Propiedad " + System.getProperty("allure.results.directory"));
     }
 
     @After
     public void tearDown(Scenario scenario) throws IOException {
         if( scenario.isFailed() ) {
             scenario.log("Scenario failed!");
-            scenario.log("For more information, please refer to the report");
+            scenario.log("For more information, please refer to the report: " + Utils.getLastReportFolderName("reports") );
             File screenshotFile = takeScreenShot( scenario.getName() );
             Allure.addAttachment("Screenshot ", FileUtils.openInputStream( screenshotFile ) );
         }
     }
 
-    public static File takeScreenShot ( String screenShotName ) {
+    public static File takeScreenShot ( String screenshotName ) {
         
         File file = ( (TakesScreenshot) driver ).getScreenshotAs( OutputType.FILE );
         String srcPath = System.getProperty( "user.dir" );
-        String screenShotPath = "";
+        String screenshotPath = "";
 
         try {
-            screenShotPath = srcPath + File.separator + Utils.getLastReportFolderName("screenshots") + File.separator + screenShotName.replace(" ", "_") + ".png";
-            System.out.println( "SS path: " + screenShotPath );
-            FileUtils.copyFile( file, new File( screenShotPath ) );
+            screenshotPath = srcPath + File.separator + Utils.getLastReportFolderName("screenshots") + File.separator + screenshotName.replace(" ", "_") + ".png";
+            FileUtils.copyFile( file, new File( screenshotPath ) );
+            System.out.println( "Screenshot at: " + screenshotPath );
             
         } catch (IOException e) {
             e.printStackTrace();
