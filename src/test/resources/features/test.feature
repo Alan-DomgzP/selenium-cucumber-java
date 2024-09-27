@@ -33,7 +33,7 @@ Feature: Automation practice
         Examples:
             | menu_option |
             | Option2     |
-            # | Option3     |
+            | Option3     |
 
     @alert
     Scenario: Switch To Alert Example

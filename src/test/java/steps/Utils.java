@@ -20,21 +20,21 @@ public class Utils {
 
     public static List<String> paths() {
         return Arrays.asList(
-            "reports",
+            // "reports",
             "screenshots"
         );
     }
 
     public static void validateAndCreateDirectories() throws IOException {
-        boolean printMessage = true;  // Variable para controlar si se imprime el mensaje
+        boolean printMessage = true;  // Flag to print first time message
         List<String> directories = paths();
 
         for( String item : directories ) {
             String directory = Paths.get( BASE_DIR, item ).toString();
             if( !Files.exists( Paths.get( directory ) ) ) {
-                if( printMessage ) {  // Imprimir mensaje solo la primera vez
+                if( printMessage ) {  // Print the first time message
                     System.out.println("--- The evidences folder will be created ---");
-                    printMessage = false;  // Cambiar a False después de imprimir el mensaje
+                    printMessage = false;  // Flag update after printing message
                 }
                 createDirectory(directory);
                 createTodaysDirectory(directory);
@@ -74,20 +74,21 @@ public class Utils {
         String path = Paths.get(BASE_DIR, directory, folderDate).toString();
 
         try {
-            // Obtener la lista de elementos en la carpeta
+            // Get list of elements in folder
             File folder = new File(path);
             String[] elements = folder.list();
 
             if (elements == null) {
                 throw new IOException("No elements found in the directory: " + path);
             }
+            
 
-            // Filtrar solo los elementos que sean directorios
+            // Filters only directories name
             List<String> directories = Arrays.stream(elements)
                     .filter(element -> new File(path, element).isDirectory())
                     .collect(Collectors.toList());
 
-            // Obtener el nombre de la última carpeta en función de su valor numérico
+            // Get the last folder name created
             int lastFolderNumber = directories.stream()
                     .mapToInt(Integer::parseInt)
                     .max()
@@ -110,19 +111,21 @@ public class Utils {
         String srcPath = System.getProperty( "user.dir" );
         String PROPERTIES_FILE = Paths.get(srcPath, properties_file_name).toString();
 
-        // Leer el archivo properties
+        // Read the allure properties file
         try (FileInputStream in = new FileInputStream(PROPERTIES_FILE)) {
             properties.load(in);
         }
-
-        // Modificar el valor de allure.results.directory
+        System.out.println("SETTING REPORTS LOCATION");
+        // Modify the string for allure.results.directory
         properties.setProperty("allure.results.directory", newDirectory);
 
-        // Guardar los cambios en el archivo properties
+        // Save changes on file
         try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {
             properties.store(out, null);
         }
 
         System.out.println("Updated allure.results.directory to: " + newDirectory);
     }
+
+
 }
