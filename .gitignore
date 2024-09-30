@@ -6,3 +6,5 @@ build
 
 **/evidences/**
 **/reports/**
+
+/src/test/resources/cucumber.properties
