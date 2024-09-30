@@ -30,7 +30,7 @@ The test cases used for this project come from a technical challenge by Stori, a
       ```
 3. Reports will be created locally and at [cucumber reports](https://reports.cucumber.io/).
     - For [allure reports](https://allurereport.org/docs/install/), you need to have it installed on your machine and be at the `evidences/reports/[date_folder]/[num_execution_folder]` folder location and execute on a terminal `allure serve` to visualize them
-    - For cucumber reports, open `https://reports.cucumber.io/report-collections/[ADD_YOUR_CUCUMBER_REPORTS_TOKEN]`
+    - For [cucumber reports](#cucumber-reports), open `https://reports.cucumber.io/report-collections/[YOUR_CUCUMBER_REPORTS_TOKEN]`
 
 <br>
 <br>
@@ -39,3 +39,14 @@ The test cases used for this project come from a technical challenge by Stori, a
     The test cases for the switch tab/window (4, 5) has changed so it's impossible to complete them.
 </div>
 
+### Cucumber reports
+
+- Create `cucumber.properties` file at the resources folder
+    ```
+        cucumber.publish.enabled=true
+        cucumber.publish.token=[ADD_YOUR_TOKEN]
+    ```
+- You need to logged in or registered at: https://reports.cucumber.io/
+- Create a collection or use one previously registered
+
+- Copy and paste the `CUCUMBER_PUBLISH_TOKEN` into the properties file
