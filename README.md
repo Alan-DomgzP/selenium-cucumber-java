@@ -11,13 +11,24 @@ This project is based on the framework provided by [_Patricio Miner_](https://ww
 
 The test cases used for this project come from a technical challenge by Stori, adapted for Java and Selenium, as the original was intended for Appium and Python.
 
+## Cucumber reports
+
+- Create `cucumber.properties` file at the resources folder
+    ```
+        cucumber.publish.enabled=true
+        cucumber.publish.token=[ADD_YOUR_TOKEN]
+    ```
+- You need to logged in or registered at: https://reports.cucumber.io/
+- Create a collection or use one previously registered
+
+- Copy and paste the `CUCUMBER_PUBLISH_TOKEN` into the properties file
+
 ## How to use
 
 1. Execute `gradle build` on a terminal to download the project dependencies.
     > This will also execute the current test case tag
 
 2. Execute test cases
-    * Via `gradle build` command.
     * Via runner file located at `src/test/java/runner`
       <br> You need to update the tag in the `CucumberOptions` based on the tag of the test case to be executed.
       ```java
@@ -28,6 +39,12 @@ The test cases used for this project come from a technical challenge by Stori, a
         tags="@alert"
       )
       ```
+    * Via gradle command
+        ```
+        gradle build
+        gradle test -Dcucumber.filter.tags="@tag_of_test"
+
+        ```
 3. Reports will be created locally and at [cucumber reports](https://reports.cucumber.io/).
     - For [allure reports](https://allurereport.org/docs/install/), you need to have it installed on your machine and be at the `evidences/reports/[date_folder]/[num_execution_folder]` folder location and execute on a terminal `allure serve` to visualize them
     - For [cucumber reports](#cucumber-reports), open `https://reports.cucumber.io/report-collections/[YOUR_CUCUMBER_REPORTS_TOKEN]`
@@ -40,14 +57,3 @@ The test cases used for this project come from a technical challenge by Stori, a
 </div>
 
 
-### Cucumber reports
-
-- Create `cucumber.properties` file at the resources folder
-    ```
-        cucumber.publish.enabled=true
-        cucumber.publish.token=[ADD_YOUR_TOKEN]
-    ```
-- You need to logged in or registered at: https://reports.cucumber.io/
-- Create a collection or use one previously registered
-
-- Copy and paste the `CUCUMBER_PUBLISH_TOKEN` into the properties file
