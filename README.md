@@ -39,8 +39,6 @@ The test cases used for this project come from a technical challenge by Stori, a
     The test cases for the switch tab/window (4, 5) has changed so it's impossible to complete them.
 </div>
 
-\colorbox{yellow}{Este texto tiene un fondo amarillo.}
-\colorbox{GoldenRod}{orange background}
 
 ### Cucumber reports
 
