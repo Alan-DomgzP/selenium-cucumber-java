@@ -23,9 +23,15 @@ public class Hooks extends BasePage {
     public void tearDown(Scenario scenario) throws IOException {
         if( scenario.isFailed() ) {
             scenario.log("Scenario failed!");
+            // FOR ALLURE REPORTS
             // scenario.log("For more information, please refer to the report: " + Utils.getLastReportFolderName("reports") );
             File screenshotFile = takeScreenShot( scenario.getName() );
             Allure.addAttachment("Screenshot ", FileUtils.openInputStream( screenshotFile ) );
+
+            // FOR CUCUMBER REPORTS
+            final byte[] screenshot = ((TakesScreenshot) driver)
+                    .getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "Screenshot of the error");
         }
     }
 

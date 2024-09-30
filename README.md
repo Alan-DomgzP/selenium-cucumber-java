@@ -29,7 +29,7 @@ The test cases used for this project come from a technical challenge by Stori, a
       )
       ```
 3. Reports will be created locally and at [cucumber reports](https://reports.cucumber.io/).
-    - For [allure reports](https://allurereport.org/docs/install/), you need to have it installed on your machine and be at the `reports` folder location and execute on a terminal `allure serve`
+    - For [allure reports](https://allurereport.org/docs/install/), you need to have it installed on your machine and be at the `evidences/reports/[date_folder]/[num_execution_folder]` folder location and execute on a terminal `allure serve` to visualize them
     - For cucumber reports, open `https://reports.cucumber.io/report-collections/98c337f1-8e6f-4dfc-87e7-fa4304c67852`
 
 <br>

@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.stream.Collectors;
+
+
 import java.util.Properties;
 
 
@@ -20,7 +21,7 @@ public class Utils {
 
     public static List<String> paths() {
         return Arrays.asList(
-            // "reports",
+            "reports",
             "screenshots"
         );
     }
@@ -127,5 +128,41 @@ public class Utils {
         System.out.println("Updated allure.results.directory to: " + newDirectory);
     }
 
+    public static void moveAndDeleteAllureReports(String targetDir) throws IOException  {
+        String sourceDir = "allure-results";
+        Path sourcePath = Paths.get(sourceDir);
+        Path targetPath = Paths.get(targetDir);
+        
+        if (!Files.exists(targetPath)) {
+            Files.createDirectories(targetPath);
+        }
 
+        Files.walk(sourcePath)
+            .forEach(source -> {
+                Path destination = targetPath.resolve(sourcePath.relativize(source));
+                try {
+                    // Solo mover los archivos, no las carpetas vacías
+                    if (Files.isDirectory(source)) {
+                        Files.createDirectories(destination); // Crea subcarpetas en el destino si existen en el origen
+                    } else {
+                        Files.move(source, destination, StandardCopyOption.REPLACE_EXISTING);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        // Eliminar el directorio "allure-reports" después de mover los archivos
+        deleteDirectoryRecursively(new File(sourceDir));
+    }
+
+    public static boolean deleteDirectoryRecursively(File directory) {
+        File[] allContents = directory.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectoryRecursively(file);
+            }
+        }
+        return directory.delete();
+    }
 }

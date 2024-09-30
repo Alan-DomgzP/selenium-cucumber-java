@@ -18,20 +18,20 @@ import java.io.IOException;
     features = "src/test/resources", 
     glue = "steps",
     plugin = { "pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },
-    tags="@dropdown"
+    tags="@suggesstion_input"
 )
  
 public class TestRunner {
 
     @BeforeClass
-    public static void setUpAllureProperties() throws IOException, InterruptedException {
+    public static void setUpAllureProperties() throws IOException {
         Utils.validateAndCreateDirectories();
-        // String reportLocation = Utils.getLastReportFolderName("reports");
-        // Utils.updateAllureResultsDirectory(reportLocation);
     }
     
     @AfterClass
-    public static void cleanDriver() {
+    public static void cleanDriver() throws IOException {
+        String reportLocation = Utils.getLastReportFolderName("reports");
+        Utils.moveAndDeleteAllureReports(reportLocation);
         BasePage.closeBrowser();
     }
 }
