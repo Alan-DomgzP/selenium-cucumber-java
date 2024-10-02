@@ -3,16 +3,11 @@ package steps;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.nio.file.*;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.stream.Collectors;
-
-
-import java.util.Properties;
 
 
 public class Utils {
@@ -103,29 +98,6 @@ public class Utils {
             System.err.println("There was an error: " + e.getMessage());
             throw e;
         }
-    }
-
-    public static void updateAllureResultsDirectory(String newDirectory) throws IOException {
-        Properties properties = new Properties();
-
-        String properties_file_name = "src/test/resources/allure.properties";
-        String srcPath = System.getProperty( "user.dir" );
-        String PROPERTIES_FILE = Paths.get(srcPath, properties_file_name).toString();
-
-        // Read the allure properties file
-        try (FileInputStream in = new FileInputStream(PROPERTIES_FILE)) {
-            properties.load(in);
-        }
-        System.out.println("SETTING REPORTS LOCATION");
-        // Modify the string for allure.results.directory
-        properties.setProperty("allure.results.directory", newDirectory);
-
-        // Save changes on file
-        try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {
-            properties.store(out, null);
-        }
-
-        System.out.println("Updated allure.results.directory to: " + newDirectory);
     }
 
     public static void moveAndDeleteAllureReports(String targetDir) throws IOException  {

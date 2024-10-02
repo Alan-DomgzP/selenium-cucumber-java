@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -130,14 +131,14 @@ public class BasePage {
  
     }
 
-    public List<WebElement> getListOfElements ( String locator ) {
-        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy( getBy("xpath", locator) ) );
+    public List<WebElement> getListOfElements ( String locatorType, String locator ) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy( getBy( locatorType, locator) ) );
         // return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy( By.xpath( locator ) ) );
         // return driver.findElements( By.xpath( locator ) );
     }
 
-    public void selectItemInList(String locator, String elementToFind) {
-        List<WebElement> elementList = getListOfElements(locator);
+    public void selectItemInList( String locatortype, String locator, String elementToFind) {
+        List<WebElement> elementList = getListOfElements(locatortype, locator);
 
         for(WebElement e : elementList ) {
             if( e.getText().equals(elementToFind) ) {
@@ -163,6 +164,14 @@ public class BasePage {
         }
     }
 
+    public void scrollAndFindElement (String locatorType, String locator) {
+        new Actions(driver)
+            .scrollToElement(Find( locatorType, locator ))
+            .perform();
+    }
 
+    public Boolean isElementPresent(String locatorType, String locator) {
+        return Find( locatorType, locator ).isDisplayed();
+    }
 
 }

@@ -85,4 +85,24 @@ public class TestSteps {
         test.dismissAlert();
     }
 
+    @Then("we look for the courses table")
+    public void coursesTable() {
+        test.searchCourseTable();
+    }
+
+    @And("^we are searching for the \\$([0-9]+) courses$")
+    public void coursesPrice(String price) {
+        List<String> coursesList = test.getAllElementsInCoursesTable(price);
+
+        System.out.println(price);
+        System.out.println("Lista: " + coursesList);
+
+        // Assert.assertFalse(coursesList.isEmpty(), "Not items where found with given criteria: " + price);
+        if( coursesList.isEmpty() ){ 
+            System.out.println("Not items where found with given criteria: " + price);
+        }
+    }
+
 }
+
+

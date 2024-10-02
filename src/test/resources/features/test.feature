@@ -2,9 +2,11 @@ Feature: Automation practice
     A site to practice automation.
 
     Background:
+    # Test 1
         Given we are on the automation practice page
 
-    @suggesstion_input
+    # Test 2
+    @suggesstion_input 
     Scenario Outline: Suggestion input example
         When we type <entry> on the suggession input
         Then we validate <country> is in the list
@@ -23,7 +25,7 @@ Feature: Automation practice
         When we type Wa on the suggession input
         Then we validate Washington is in the list
 
-
+    # Test 3
     @dropdown
     Scenario Outline: Get dropdown menu options
         When we click on the dropdown example
@@ -35,6 +37,7 @@ Feature: Automation practice
             | Option2     |
             | Option3     |
 
+    # Test 6
     @alert
     Scenario: Switch To Alert Example
         When we fill the alert input with "Stori Card"
@@ -43,3 +46,11 @@ Feature: Automation practice
         When we fill the alert input with "Stori Card"
         Then we click the confirm button
         And validate the confirm text and close alert
+
+    # Test 7
+    @courses_table
+    Scenario: Course cost table
+        Then we look for the courses table
+        And we are searching for the $25 courses
+        And we are searching for the $15 courses
+        

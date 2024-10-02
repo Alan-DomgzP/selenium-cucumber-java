@@ -3,6 +3,7 @@ package pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class AutomationPage extends BasePage {
@@ -21,9 +22,12 @@ public class AutomationPage extends BasePage {
     // CSS SELECTOR
     // private String alertButton = "#alertbtn";
     // private String confirmButton = "#confirmbtn";
-    // private String cssSelector = "cssSelector";
-
+    
+    // private String table_courses = "table[name='courses'] tbody tr td:nth-child(3)"; //For the 3rd column
+    private String table_courses = "table[name='courses'] tbody tr";
+    
     private String xpathLocator = "xpath";
+    private String cssSelector = "cssSelector";
 
     // private String searchInput = "//div[@id='the-basics']//input[@placeholder='States of USA']";
     // private String searchResults = "tt-suggestion";
@@ -38,12 +42,11 @@ public class AutomationPage extends BasePage {
     }
 
     public void writeInput(String entry){
-        // Thread.sleep(600);
         write(xpathLocator, suggestionInput, entry);
     }
 
     public List<String> getAllElements() {
-        List<WebElement> list = getListOfElements(sugesstionResults);
+        List<WebElement> list = getListOfElements( xpathLocator, sugesstionResults);
         List<String> elementStringList = new ArrayList<>();
         
         for (WebElement e : list) {
@@ -52,9 +55,8 @@ public class AutomationPage extends BasePage {
         return elementStringList;
     }
     
-
     public void selectCountryInList(String country) {
-        selectItemInList(sugesstionResults, country);
+        selectItemInList(xpathLocator, sugesstionResults, country);
     }
 
     public String validateInputValue() {
@@ -92,5 +94,32 @@ public class AutomationPage extends BasePage {
     public void dismissAlert() throws InterruptedException {
         Thread.sleep(600);
         alertActions("dismiss");
+    }
+
+    public void searchCourseTable() {
+        scrollAndFindElement(cssSelector, table_courses);
+    }
+
+    public List<String> getAllElementsInCoursesTable(String val) {
+        Boolean elemenIsPresent = isElementPresent(cssSelector, table_courses);
+        List<String> elementStringList = new ArrayList<>();
+
+        if( elemenIsPresent ) {
+            System.out.println("Elemento: " + elemenIsPresent);
+            List<WebElement> rows = getListOfElements( cssSelector, table_courses );
+            
+            for (WebElement row : rows) {
+                List<WebElement> cells = row.findElements(By.tagName("td"));
+                if ( cells.size() > 0 ) {
+                    String price = cells.get(2).getText();
+                    if ( price.equals( val )) {
+                        String courseName = cells.get(1).getText();
+                        elementStringList.add(courseName);
+                    }
+                }
+            }
+        }
+
+        return elementStringList;
     }
 }
