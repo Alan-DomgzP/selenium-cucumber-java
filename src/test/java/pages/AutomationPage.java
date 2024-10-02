@@ -63,7 +63,7 @@ public class AutomationPage extends BasePage {
     }
 
     public String validateInputValue() {
-        return getElementTxtFromAttribute(xpathLocator, suggestionInput);
+        return getElementTxtByAttribute(xpathLocator, suggestionInput);
     }
 
     public void clickDropdown() {
@@ -77,7 +77,7 @@ public class AutomationPage extends BasePage {
     }
 
     public String validateDropdownText() {
-        return getElementTxtFromAttribute(xpathLocator, dropdownElement);
+        return getElementTxtByAttribute(xpathLocator, dropdownElement);
     }
     
     public void fillAlert( String text ) {

@@ -82,7 +82,7 @@ public class BasePage {
         Find(locatorType, locator).click();
     }
 
-    public String getElementTxtFromAttribute( String locatorType, String locator) {
+    public String getElementTxtByAttribute( String locatorType, String locator) {
         return Find(locatorType, locator).getAttribute("value");
     }
 
@@ -136,8 +136,6 @@ public class BasePage {
 
     public List<WebElement> getListOfElements ( String locatorType, String locator ) {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy( getBy( locatorType, locator) ) );
-        // return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy( By.xpath( locator ) ) );
-        // return driver.findElements( By.xpath( locator ) );
     }
 
     public void selectItemInList( String locatortype, String locator, String elementToFind) {
@@ -180,4 +178,5 @@ public class BasePage {
     public void switchToiFrame( String name ){
         driver.switchTo().frame(name);
     }
+
 }
