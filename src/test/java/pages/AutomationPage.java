@@ -24,7 +24,8 @@ public class AutomationPage extends BasePage {
     // private String confirmButton = "#confirmbtn";
     
     // private String table_courses = "table[name='courses'] tbody tr td:nth-child(3)"; //For the 3rd column
-    private String table_courses = "table[name='courses'] tbody tr";
+    private String courses_table = "table[name='courses'] tbody tr";
+    private String employees_table = "body > div:nth-child(5) > div:nth-child(2) > fieldset:nth-child(2) > div:nth-child(2) > table:nth-child(1) tbody tr";
     
     private String xpathLocator = "xpath";
     private String cssSelector = "cssSelector";
@@ -41,7 +42,7 @@ public class AutomationPage extends BasePage {
         // navigateTo("https://twitter.github.io/typeahead.js/examples/");
     }
 
-    public void writeInput(String entry){
+    public void writeInput( String entry ){
         write(xpathLocator, suggestionInput, entry);
     }
 
@@ -55,7 +56,7 @@ public class AutomationPage extends BasePage {
         return elementStringList;
     }
     
-    public void selectCountryInList(String country) {
+    public void selectCountryInList( String country ) {
         selectItemInList(xpathLocator, sugesstionResults, country);
     }
 
@@ -67,7 +68,7 @@ public class AutomationPage extends BasePage {
         clickElement(xpathLocator, dropdownElement);
     }
 
-    public void selectDropdownValue(String option) {
+    public void selectDropdownValue( String option ) {
         // selectFromDropdownByText( xpathLocator, dropdownElement, option);
         String value = String.format(dropdownOption, option.toLowerCase());
         clickElement(xpathLocator, value);
@@ -77,11 +78,11 @@ public class AutomationPage extends BasePage {
         return getElementTxt(xpathLocator, dropdownElement);
     }
     
-    public void fillAlert(String text) {
+    public void fillAlert( String text ) {
         write(xpathLocator, alertInput, text);
     }
 
-    public void clickAlertButton(String type) {
+    public void clickAlertButton( String type ) {
         String buttonToClick = ( type.equals("alert") ) ? alertButton : confirmButton;
         clickElement(xpathLocator, buttonToClick);
         // clickElement(cssSelector, buttonToClick);
@@ -97,16 +98,15 @@ public class AutomationPage extends BasePage {
     }
 
     public void searchCourseTable() {
-        scrollAndFindElement(cssSelector, table_courses);
+        scrollAndFindElement(cssSelector, courses_table);
     }
 
-    public List<String> getAllElementsInCoursesTable(String val) {
-        Boolean elemenIsPresent = isElementPresent(cssSelector, table_courses);
+    public List<String> getAllElementsInCoursesTable( String val ) {
+        Boolean elementIsPresent = isElementPresent(cssSelector, courses_table);
         List<String> elementStringList = new ArrayList<>();
 
-        if( elemenIsPresent ) {
-            System.out.println("Elemento: " + elemenIsPresent);
-            List<WebElement> rows = getListOfElements( cssSelector, table_courses );
+        if( elementIsPresent ) {
+            List<WebElement> rows = getListOfElements( cssSelector, courses_table );
             
             for (WebElement row : rows) {
                 List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -122,4 +122,34 @@ public class AutomationPage extends BasePage {
 
         return elementStringList;
     }
+
+    public void searchEmployeesTable() {
+        scrollAndFindElement(cssSelector, employees_table);
+    }
+
+    public String convertToSingular( String position ) {
+        if (position.endsWith("s")) {
+            return position.substring(0, position.length() - 1);
+        }
+        return position;
+    }
+
+    public List<String> getAllElementsInEmployeesTable( String val ) {
+        List<String> elementStringList = new ArrayList<>();
+        List<WebElement> rows = getListOfElements( cssSelector, employees_table );
+            
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            if ( cells.size() > 0 ) {
+                String position = cells.get(1).getText();
+                if ( position.equals( val ) ) {
+                    String employeeName = cells.get(0).getText();
+                    elementStringList.add(employeeName);
+                }
+            }
+        }
+
+        return elementStringList;
+    }
+
 }

@@ -53,4 +53,11 @@ Feature: Automation practice
         Then we look for the courses table
         And we are searching for the $25 courses
         And we are searching for the $15 courses
-        
+    
+
+    # Test 8
+    @employees_table
+    Scenario: Employees table
+        Then we look for the employees table
+        And we are searching all the Engineers
+        And we are searching all the Businessmans

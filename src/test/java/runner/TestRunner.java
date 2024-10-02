@@ -18,7 +18,7 @@ import java.io.IOException;
     features = "src/test/resources", 
     glue = "steps",
     plugin = { "pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },
-    tags="@courses_table"
+    tags="@employees_table"
 )
  
 public class TestRunner {

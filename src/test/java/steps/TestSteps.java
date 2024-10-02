@@ -103,6 +103,24 @@ public class TestSteps {
         }
     }
 
+    @Then("we look for the employees table")
+    public void employeesTable() {
+        test.searchEmployeesTable();
+    }
+
+    @And("^we are searching all the (.*)$")
+    public void employeePosition(String position) {
+        String singular_position = test.convertToSingular(position);
+        List<String> employeeList = test.getAllElementsInEmployeesTable(singular_position);
+
+        System.out.println(singular_position);
+        System.out.println("Lista: " + employeeList);
+
+        if( employeeList.isEmpty() ){ 
+            System.out.println("Not items where found with given criteria: " + employeeList);
+        }
+    }
+
 }
 
 
