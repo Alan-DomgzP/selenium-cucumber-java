@@ -121,6 +121,21 @@ public class TestSteps {
         }
     }
 
+    @Then("we look for the iFrame")
+    public void moveToiFrame() {
+        test.moveToiFrame();
+    }
+
+    @And("we search for the text in the iFrame")
+    public void lookForText() {
+        test.switchToiFrame();
+        String text = test.getText();
+        String odd_text = test.oddIndexes(text);
+
+        System.out.println("Highlighted text: " + text);
+        System.out.println("Odd text: " + odd_text);
+    }
+
 }
 
 

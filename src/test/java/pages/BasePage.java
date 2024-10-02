@@ -82,9 +82,12 @@ public class BasePage {
         Find(locatorType, locator).click();
     }
 
-    public String getElementTxt(String locatorType, String locator) {
-        // return Find(locatorType, locator).getText();
+    public String getElementTxtFromAttribute( String locatorType, String locator) {
         return Find(locatorType, locator).getAttribute("value");
+    }
+
+    public String getElementTxt( String locatorType, String locator) {
+        return Find(locatorType, locator).getText();
     }
 
     public void write(String locatorType, String locator, String keysToSend) {
@@ -174,4 +177,7 @@ public class BasePage {
         return Find( locatorType, locator ).isDisplayed();
     }
 
+    public void switchToiFrame( String name ){
+        driver.switchTo().frame(name);
+    }
 }

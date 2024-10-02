@@ -26,7 +26,9 @@ public class AutomationPage extends BasePage {
     // private String table_courses = "table[name='courses'] tbody tr td:nth-child(3)"; //For the 3rd column
     private String courses_table = "table[name='courses'] tbody tr";
     private String employees_table = "body > div:nth-child(5) > div:nth-child(2) > fieldset:nth-child(2) > div:nth-child(2) > table:nth-child(1) tbody tr";
-    
+    private String iframe = "//iframe[@id='courses-iframe']";
+    private String highlighted_blue = "//li[contains(text(),'His mentorship program is most after in the softwa')]";
+
     private String xpathLocator = "xpath";
     private String cssSelector = "cssSelector";
 
@@ -61,7 +63,7 @@ public class AutomationPage extends BasePage {
     }
 
     public String validateInputValue() {
-        return getElementTxt(xpathLocator, suggestionInput);
+        return getElementTxtFromAttribute(xpathLocator, suggestionInput);
     }
 
     public void clickDropdown() {
@@ -75,7 +77,7 @@ public class AutomationPage extends BasePage {
     }
 
     public String validateDropdownText() {
-        return getElementTxt(xpathLocator, dropdownElement);
+        return getElementTxtFromAttribute(xpathLocator, dropdownElement);
     }
     
     public void fillAlert( String text ) {
@@ -152,4 +154,30 @@ public class AutomationPage extends BasePage {
         return elementStringList;
     }
 
+    public void moveToiFrame(){
+        scrollAndFindElement(xpathLocator, iframe);
+    }
+
+    public void switchToiFrame() {
+        switchToiFrame("courses-iframe");
+    }
+
+    public String getText() {
+        scrollAndFindElement(xpathLocator, highlighted_blue);
+        return getElementTxt(xpathLocator, highlighted_blue);
+    }
+
+    public String oddIndexes(String text) { 
+        String[] words = text.split(" ");
+        List<String> oddIndexWords = new ArrayList<>();
+
+        for (int i = 0; i < words.length; i++) {
+            if (i % 2 != 0) {
+                oddIndexWords.add(words[i]);
+            }
+        }
+        return String.join(" ", oddIndexWords);
+    }
 }
+
+

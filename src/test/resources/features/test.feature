@@ -61,3 +61,9 @@ Feature: Automation practice
         Then we look for the employees table
         And we are searching all the Engineers
         And we are searching all the Businessmans
+
+    # Test 9
+    @iFrame
+    Scenario: iFrame
+        Then we look for the iFrame
+        And we search for the text in the iFrame
