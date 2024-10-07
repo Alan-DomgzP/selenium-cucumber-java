@@ -9,7 +9,7 @@ This project is based on the framework provided by [_Patricio Miner_](https://ww
 ![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)
 
 
-The test cases used for this project come from a technical challenge by Stori, adapted for Java and Selenium, as the original was intended for Appium and Python.
+The test cases used for this project come from a technical challenge, adapted for Java and Selenium, as the original was intended for Appium/Selenium and Python.
 
 ## Cucumber reports
 

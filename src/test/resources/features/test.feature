@@ -40,10 +40,10 @@ Feature: Automation practice
     # Test 6
     @alert
     Scenario: Switch To Alert Example
-        When we fill the alert input with "Stori Card"
+        When we fill the alert input with "Automation Challenge"
         Then we click the alert button
         And validate the alert text and close alert
-        When we fill the alert input with "Stori Card"
+        When we fill the alert input with "Challenge"
         Then we click the confirm button
         And validate the confirm text and close alert
 
